@@ -488,6 +488,64 @@ html[data-theme="dark"] .file-type-badge.ppt, html[data-theme="dark"] .file-type
   color: #ffb85c;
   border-color: #543b18;
 }
+
+/* ============================================================
+   PRE-MIDS ACCORDION
+   ============================================================ */
+.archive-section { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+.archive-toggle {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  background: none; border: none; cursor: pointer;
+  font-family: 'IBM Plex Mono', monospace; font-size: 10.5px;
+  letter-spacing: .12em; color: var(--ink-soft); text-transform: uppercase;
+  padding: 0 18px 10px; text-align: left;
+  transition: color .18s ease;
+}
+.archive-toggle:hover { color: var(--signal); }
+.archive-toggle .chevron {
+  margin-left: auto; width: 14px; height: 14px; flex: 0 0 auto;
+  transition: transform .22s ease;
+}
+.archive-toggle.open .chevron { transform: rotate(180deg); }
+.archive-list {
+  list-style: none; margin: 0; padding: 0 10px;
+  max-height: 0; overflow: hidden;
+  transition: max-height .3s ease;
+}
+.archive-list.open { max-height: 400px; }
+.archive-list li { margin-bottom: 2px; }
+.archive-list a {
+  display: flex; align-items: center; gap: 9px; text-decoration: none;
+  color: var(--ink); padding: 7px 10px 7px 12px;
+  border-radius: 0 6px 6px 0; border-left: 3px solid transparent;
+  font-size: 13px; transition: background .15s ease;
+}
+.archive-list a:hover { background: var(--signal-soft); border-left-color: var(--signal); }
+.archive-list .week-no {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10px;
+  color: var(--signal); background: var(--signal-soft);
+  border: 1px solid var(--signal); border-radius: 4px;
+  padding: 1px 5px; flex: 0 0 auto; letter-spacing: .04em;
+}
+.archive-list .week-name { flex: 1; line-height: 1.3; }
+.archive-list .ext-badge {
+  font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px;
+  text-transform: uppercase; letter-spacing: .05em;
+  font-family: 'Space Grotesk', sans-serif; flex: 0 0 auto;
+}
+.archive-list .ext-badge.pdf { background:#fdf0ed; color:#c93b2b; border:1px solid #f9d7d2; }
+.archive-list .ext-badge.ppt, .archive-list .ext-badge.pptx { background:#fdf5e6; color:#b86200; border:1px solid #f5dec1; }
+html[data-theme="dark"] .archive-list .ext-badge.pdf { background:#3c1e18; color:#ff8b7e; border-color:#5e2f26; }
+html[data-theme="dark"] .archive-list .ext-badge.ppt,
+html[data-theme="dark"] .archive-list .ext-badge.pptx { background:#352510; color:#ffb85c; border-color:#543b18; }
+.classwork-link {
+  display: flex; align-items: center; gap: 9px; text-decoration: none;
+  color: var(--ink); padding: 7px 10px 7px 14px;
+  border-radius: 0 6px 6px 0; border-left: 3px solid transparent;
+  font-size: 13px; margin: 2px 10px;
+  transition: background .15s ease;
+}
+.classwork-link:hover { background: var(--signal-soft); border-left-color: var(--stamp); }
 </style>
 </head>
 <body>
@@ -542,21 +600,63 @@ html[data-theme="dark"] .file-type-badge.ppt, html[data-theme="dark"] .file-type
       <li><a href="#cloud-threats" data-topic="cloud-threats"><span class="tab-no">10</span><span class="tab-title">Cloud &amp; Cyber Threats</span><span class="tab-dot" data-dot="cloud-threats">✓</span></a></li>
       <li><a href="#key-exchange" data-topic="key-exchange"><span class="tab-no">11</span><span class="tab-title">Key Exchange &amp; MAC vs MDC</span><span class="tab-dot" data-dot="key-exchange">✓</span></a></li>
     </ol>
-    <div class="sidebar-label" style="margin-top: 24px; border-top: 1px solid var(--line); padding-top: 16px;">Reference Archive</div>
-    <ul class="toc" id="referenceLinks" style="list-style: none;">
-      <li>
-        <a href="pre%20mids/" target="_blank">
-          <span class="tab-no" style="font-size: 14px;">📁</span>
-          <span class="tab-title">Pre-Mids Folder</span>
-        </a>
-      </li>
-      <li>
-        <a href="classwork.pdf" target="_blank">
-          <span class="tab-no" style="font-size: 14px;">📄</span>
-          <span class="tab-title">Class Work PDF</span>
-        </a>
-      </li>
-    </ul>
+
+    <div class="archive-section">
+      <button class="archive-toggle" id="preMidsToggle" aria-expanded="false">
+        📁 Pre-Mids Slides
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <ul class="archive-list" id="preMidsList">
+        <li>
+          <a href="pre%20mids/1.Introduction.pptx" target="_blank">
+            <span class="week-no">WK 1</span>
+            <span class="week-name">Introduction</span>
+            <span class="ext-badge pptx">PPTX</span>
+          </a>
+        </li>
+        <li>
+          <a href="pre%20mids/2.Number%20Theory%20for%20Cryptography.pptx" target="_blank">
+            <span class="week-no">WK 2</span>
+            <span class="week-name">Number Theory</span>
+            <span class="ext-badge pptx">PPTX</span>
+          </a>
+        </li>
+        <li>
+          <a href="pre%20mids/5.DES.ppt" target="_blank">
+            <span class="week-no">WK 4</span>
+            <span class="week-name">DES</span>
+            <span class="ext-badge ppt">PPT</span>
+          </a>
+        </li>
+        <li>
+          <a href="pre%20mids/6.AES.pptx" target="_blank">
+            <span class="week-no">WK 5-6</span>
+            <span class="week-name">AES (Slides)</span>
+            <span class="ext-badge pptx">PPTX</span>
+          </a>
+        </li>
+        <li>
+          <a href="pre%20mids/AES.pdf" target="_blank">
+            <span class="week-no">WK 5-6</span>
+            <span class="week-name">AES (PDF)</span>
+            <span class="ext-badge pdf">PDF</span>
+          </a>
+        </li>
+        <li>
+          <a href="pre%20mids/Access%20Control%20Complete.pdf" target="_blank">
+            <span class="week-no">WK 7-8</span>
+            <span class="week-name">Access Control</span>
+            <span class="ext-badge pdf">PDF</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <a href="classwork.pdf" target="_blank" class="classwork-link">
+      📄 <span style="flex:1;">Class Work PDF</span>
+      <span class="ext-badge pdf" style="font-size:9px;">PDF</span>
+    </a>
+
     <div class="sidebar-foot">
       <button class="reset-btn" id="resetProgress">Reset progress &amp; saved diagrams</button>
       <div class="sidebar-note">Tap a file to open it. Tick a file off once you can recite it cold. Your diagrams and progress are saved to this dossier automatically.</div>
@@ -2531,6 +2631,17 @@ html[data-theme="dark"] .file-type-badge.ppt, html[data-theme="dark"] .file-type
     });
   }
   setTimeout(initMCQs, 100);
+
+  /* ---------- pre-mids accordion ---------- */
+  var preMidsToggle = document.getElementById("preMidsToggle");
+  var preMidsList = document.getElementById("preMidsList");
+  if(preMidsToggle && preMidsList){
+    preMidsToggle.addEventListener("click", function(){
+      var isOpen = preMidsList.classList.toggle("open");
+      preMidsToggle.classList.toggle("open", isOpen);
+      preMidsToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
 
 })();
 </script>
